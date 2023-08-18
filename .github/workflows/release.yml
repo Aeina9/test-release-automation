@@ -1,20 +1,48 @@
 # Name of the workflow
-name: Release
+# name: Release
 
 # Run on every commit tag which begins with "v" (e.g., "v0.1.4")
-on:
-  push:
-    branches:
-      - "main"
+# on:
+#   push:
+#     branches:
+#       - "main"
 
-# Automatically create a GitHub Release, with release details specified (the relevant commits)
+# # Automatically create a GitHub Release, with release details specified (the relevant commits)
+# jobs:
+#   release:
+#     name: "Release"
+#     runs-on: "ubuntu-latest"
+#     steps:
+#       - uses: "marvinpinto/action-automatic-releases@latest"
+#         with:
+#           repo_token: "${{ secrets.GITHUB_TOKEN }}"
+#           automatic_release_tag: "latest"
+#           prerelease: false
+
+
+# Alternative create release action
+name: Create Release
+
+on:
+  workflow_dispatch:
+    # Inputs the workflow accepts.
+    inputs:
+      version:
+        # Friendly description to be shown in the UI instead of 'name'
+        description: 'Semver type of new version'
+        # Input has to be provided for the workflow to run
+        required: true
+
 jobs:
-  release:
-    name: "Release"
-    runs-on: "ubuntu-latest"
+  create-github-release:
+    name: Create GitHub Release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
-      - uses: "marvinpinto/action-automatic-releases@latest"
-        with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "latest"
-          prerelease: false
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Create Release
+        run: gh release create ${{ github.event.inputs.version }} --generate-notes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
