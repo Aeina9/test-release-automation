@@ -33,11 +33,12 @@ jobs:
         run: git push origin main --follow-tags
 
       - name: Get latest tag name
-        run: |
-          LATEST_TAG=$(git describe --tags `git rev-list --tags --max-count=1`)
-          git checkout $LATEST_TAG
+        run: echo "LATEST_TAG=$(git describe --tags `git rev-list --tags --max-count=1`)" >> $GITHUB_ENV
 
       - name: Create Release
-        run: gh release create $LATEST_TAG --generate-notes
+        run:
+          echo $LATEST_TAG
+          echo ${{ env.LATEST_TAG }} 
+          gh release create ${{ env.LATEST_TAG }} --generate-notes
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
