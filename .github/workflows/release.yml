@@ -21,6 +21,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Setup Git
+        run: |
+          git config user.name 'Aeina9'
+          git config user.email 'ixamynguyen@gmail.com'
+
       - name: Bump Version
         run: npm version ${{ github.event.inputs.version }}
 
