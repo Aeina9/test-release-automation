@@ -32,13 +32,9 @@ jobs:
       - name: Push latest version
         run: git push origin main --follow-tags
 
-      - name: Get latest tag name
-        run: echo "LATEST_TAG=$(git describe --tags `git rev-list --tags --max-count=1`)" >> $GITHUB_ENV
-
       - name: Create Release
         run: |
-          echo $LATEST_TAG
-          echo ${{ env.LATEST_TAG }} 
+          echo "LATEST_TAG=$(git describe --tags `git rev-list --tags --max-count=1`)" >> $GITHUB_ENV
           gh release create ${{ env.LATEST_TAG }} --generate-notes
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
