@@ -36,6 +36,8 @@ jobs:
         run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
 
       - name: Create Release
-        run: gh release create ${{ env.RELEASE_VERSION }} --generate-notes
+        run: |
+          echo $RELEASE_VERSION
+          gh release create ${{ env.RELEASE_VERSION }} --generate-notes
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
