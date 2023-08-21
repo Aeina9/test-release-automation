@@ -38,6 +38,6 @@ jobs:
           git checkout $LATEST_TAG
 
       - name: Create Release
-        run: gh release create ${{ github.ref }} --generate-notes
+        run: gh release create $LATEST_TAG --generate-notes
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
