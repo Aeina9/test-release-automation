@@ -11,8 +11,8 @@ on:
         required: true
 
 jobs:
-  bump-version:
-    name: Bump Version
+  create-github-release:
+    name: Create GitHub Release
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -32,17 +32,6 @@ jobs:
       - name: Push latest version
         run: git push origin main --follow-tags
 
-
-  create-github-release:
-    name: Create GitHub Release
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-        
-      # Get the name of the tag that was created in Bump Version
       - name: Get latest tag name
         run: echo "LATEST_TAG=$(git describe --tags `git rev-list --tags --max-count=1`)" >> $GITHUB_ENV
 
