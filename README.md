@@ -1,3 +1,7 @@
+# Dev Notes:
+- Independant research on how to use GitHub Actions, YAMLs, CI/CD
+- Followed this [Github tutorial](https://www.youtube.com/watch?v=88FWrfHCIqo)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
