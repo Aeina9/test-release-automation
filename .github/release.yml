@@ -1,0 +1,15 @@
+# Ability to generate custom release notes with the use of titles and labels 
+changelog:
+  categories:
+  - title: Breaking Changes
+    labels:
+    - breaking-change
+  - title: Features 
+    labels:
+    - feature
+  - title: Documentation
+    labels:
+    - documentation
+  - title: Other Changes
+    labels:
+       - "*"
