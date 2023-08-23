@@ -1,7 +1,7 @@
 import React from "react";
 
 function TestElement() {
-  return <p> Hello ODI! </p>
+  return <p> Hello World! </p>
 }
 
 export default TestElement
