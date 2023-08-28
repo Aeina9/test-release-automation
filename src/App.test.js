@@ -10,6 +10,6 @@ test('renders learn react link', () => {
 
 test('check react text', () => {
   render(<TestElement />);
-  const textElement = screen.getByText(/Hello ODI!/);
+  const textElement = screen.getByText(/Hello ODI!!!/);
   expect(textElement).toBeInTheDocument();
 });
