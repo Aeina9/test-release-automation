@@ -6,7 +6,7 @@ import TestElement from './testElement';
 function App() {
   return (
     <div className="App">
-      <h1 className="App-header">
+      <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <TestElement/>
         <a
@@ -17,7 +17,7 @@ function App() {
         >
           Learn React
         </a>
-      </h1>
+      </header>
     </div>
   );
 }
